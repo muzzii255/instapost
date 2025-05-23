@@ -7,6 +7,8 @@ from typing import Optional, Dict, Any, List, Tuple
 from pathlib import Path
 import pandas as pd
 from curl_cffi import requests
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def setup_logging():
@@ -46,9 +48,9 @@ class InstagramScraper:
         self.session = requests.Session()
         
         self.proxy_config = {
-            'username': 'spb2g1f0zg',
-            'password': 'r4wf2fgwB4CDP6xfo+',
-            'endpoint': 'nl.smartproxy.com:10000'
+            'username': os.getenv("USERNAME"),
+            'password': os.getenv("PASSWORD"),
+            'endpoint': os.getenv("ENDPOINT"),
         }
         
         self.proxy = {
