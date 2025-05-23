@@ -48,8 +48,8 @@ class InstagramScraper:
         self.session = requests.Session()
         
         self.proxy_config = {
-            'username': os.getenv("USERNAME"),
-            'password': os.getenv("PASSWORD"),
+            'username': os.getenv("PROXY_USERNAME"),
+            'password': os.getenv("PROXY_PASSWORD"),
             'endpoint': os.getenv("ENDPOINT"),
         }
         
@@ -68,7 +68,7 @@ class InstagramScraper:
             'Referer': 'https://www.instagram.com/',
             'Origin': 'https://www.instagram.com'
         }
-        
+         
         os.makedirs("media", exist_ok=True)
         os.makedirs("data", exist_ok=True)
         

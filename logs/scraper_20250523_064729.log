@@ -1,0 +1,29 @@
+2025-05-23 06:47:29,997 - instagram_scraper - INFO - __init__:78 - Instagram scraper initialized successfully
+2025-05-23 06:47:29,997 - instagram_scraper - INFO - __init__:79 - Using proxy endpoint: nl.smartproxy.com:10000
+2025-05-23 06:47:29,997 - instagram_scraper - INFO - main:320 - Starting Instagram scraping session
+2025-05-23 06:47:29,997 - instagram_scraper - INFO - scrape_multiple_users:304 - Starting scrape for user: sanimax.nl
+2025-05-23 06:47:29,997 - instagram_scraper - INFO - scrape_user_posts:201 - Starting to scrape user: sanimax.nl
+2025-05-23 06:47:29,997 - instagram_scraper - DEBUG - send_request:84 - Sending request to: https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl
+2025-05-23 06:47:33,362 - instagram_scraper - ERROR - send_request:121 - Unexpected error for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl, attempt 1: Failed to perform, curl: (56) CONNECT tunnel failed, response 407. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-05-23 06:47:33,362 - instagram_scraper - INFO - send_request:124 - Retrying ...
+2025-05-23 06:47:36,619 - instagram_scraper - ERROR - send_request:121 - Unexpected error for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl, attempt 2: Failed to perform, curl: (56) CONNECT tunnel failed, response 407. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-05-23 06:47:36,620 - instagram_scraper - INFO - send_request:124 - Retrying ...
+2025-05-23 06:47:39,859 - instagram_scraper - ERROR - send_request:121 - Unexpected error for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl, attempt 3: Failed to perform, curl: (56) CONNECT tunnel failed, response 407. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-05-23 06:47:39,859 - instagram_scraper - INFO - send_request:124 - Retrying ...
+2025-05-23 06:47:43,102 - instagram_scraper - ERROR - send_request:121 - Unexpected error for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl, attempt 4: Failed to perform, curl: (56) CONNECT tunnel failed, response 407. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-05-23 06:47:43,102 - instagram_scraper - INFO - send_request:124 - Retrying ...
+2025-05-23 06:47:46,358 - instagram_scraper - ERROR - send_request:121 - Unexpected error for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl, attempt 5: Failed to perform, curl: (56) CONNECT tunnel failed, response 407. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-05-23 06:47:46,359 - instagram_scraper - INFO - send_request:124 - Retrying ...
+2025-05-23 06:47:49,615 - instagram_scraper - ERROR - send_request:121 - Unexpected error for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl, attempt 6: Failed to perform, curl: (56) CONNECT tunnel failed, response 407. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-05-23 06:47:49,615 - instagram_scraper - INFO - send_request:124 - Retrying ...
+2025-05-23 06:47:52,850 - instagram_scraper - ERROR - send_request:121 - Unexpected error for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl, attempt 7: Failed to perform, curl: (56) CONNECT tunnel failed, response 407. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-05-23 06:47:52,850 - instagram_scraper - INFO - send_request:124 - Retrying ...
+2025-05-23 06:47:56,114 - instagram_scraper - ERROR - send_request:121 - Unexpected error for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl, attempt 8: Failed to perform, curl: (56) CONNECT tunnel failed, response 407. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-05-23 06:47:56,114 - instagram_scraper - INFO - send_request:124 - Retrying ...
+2025-05-23 06:47:59,352 - instagram_scraper - ERROR - send_request:121 - Unexpected error for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl, attempt 9: Failed to perform, curl: (56) CONNECT tunnel failed, response 407. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-05-23 06:47:59,352 - instagram_scraper - INFO - send_request:124 - Retrying ...
+2025-05-23 06:48:02,615 - instagram_scraper - ERROR - send_request:121 - Unexpected error for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl, attempt 10: Failed to perform, curl: (56) CONNECT tunnel failed, response 407. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-05-23 06:48:02,615 - instagram_scraper - ERROR - send_request:126 - Failed to fetch https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl after 10 attempts
+2025-05-23 06:48:02,615 - instagram_scraper - ERROR - scrape_user_posts:208 - Failed to fetch profile for user: sanimax.nl
+2025-05-23 06:48:02,615 - instagram_scraper - INFO - main:326 - Scraping session completed: 0/1 users processed successfully
+2025-05-23 06:48:02,615 - instagram_scraper - INFO - main:330 - User sanimax.nl: FAILED
