@@ -8,8 +8,9 @@ from pathlib import Path
 import pandas as pd
 from curl_cffi import requests
 from dotenv import load_dotenv
+import boto3
+from botocore.exceptions import NoCredentialsError, ClientError
 load_dotenv()
-
 
 def setup_logging():
     os.makedirs("logs", exist_ok=True)
@@ -53,6 +54,8 @@ class InstagramScraper:
             'endpoint': os.getenv("ENDPOINT"),
         }
         
+        
+        
         self.proxy = {
             'http': f'http://{self.proxy_config["username"]}:{self.proxy_config["password"]}@{self.proxy_config["endpoint"]}',
             'https': f'http://{self.proxy_config["username"]}:{self.proxy_config["password"]}@{self.proxy_config["endpoint"]}'
@@ -77,7 +80,27 @@ class InstagramScraper:
         
         self.logger.info("Instagram scraper initialized successfully")
         self.logger.info(f"Using proxy endpoint: {self.proxy_config['endpoint']}")
-
+    
+        self.s3_bucket = os.getenv("S3_BUCKET_NAME")
+        self.s3_client = boto3.client(
+            "s3",
+            aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+            region_name=os.getenv("AWS_REGION")
+        )
+        
+    def upload_to_s3(self, local_path: str, s3_key: str) -> bool:
+        try:
+            self.s3_client.upload_file(local_path, self.s3_bucket, s3_key)
+            self.logger.info(f"Uploaded to S3: s3://{self.s3_bucket}/{s3_key}")
+            return True
+        except FileNotFoundError:
+            self.logger.error(f"File not found for S3 upload: {local_path}")
+        except NoCredentialsError:
+            self.logger.error("AWS credentials not found.")
+        except ClientError as e:
+            self.logger.error(f"S3 upload error: {e}")
+        return False
 
 
     def send_request(self, url: str, stream: bool = False, timeout: int = 30) -> Optional[requests.Response]:
@@ -109,7 +132,6 @@ class InstagramScraper:
                     return response
                 elif response.status_code == 429:
                     self.logger.warning(f"Rate limited (429) for {url}, attempt {attempt + 1}")
-                    time.sleep(self.retry_delay * (attempt + 1))
                 else:
                     self.logger.warning(f"HTTP {response.status_code} for {url}, attempt {attempt + 1}")
                     
@@ -142,7 +164,18 @@ class InstagramScraper:
                             f.write(chunk)
                 
                 file_size = os.path.getsize(filepath)
-                self.logger.info(f"Successfully downloaded {filename} ({file_size} bytes)")
+                self.logger.info(f"Downloaded {filename} ({file_size} bytes)")
+    
+                s3_key = filepath.name  
+                if self.upload_to_s3(str(filepath), s3_key):
+                    try:
+                        os.remove(filename)
+                        self.logger.info(f"{filename} deleted!.")
+                    except:pass
+                    self.logger.info(f"Successfully uploaded {filename} to S3")
+                else:
+                    self.logger.warning(f"Failed to upload {filename} to S3")
+    
                 return True
             else:
                 self.logger.error(f"Failed to download {filename}")
@@ -151,8 +184,8 @@ class InstagramScraper:
         except Exception as e:
             self.logger.error(f"Error downloading {filename}: {str(e)}")
             return False
-
-
+            
+            
     def extract_caption(self, post_data: Dict[str, Any]) -> str:
         try:
             caption_edges = post_data.get('node', {}).get('edge_media_to_caption', {}).get('edges', [])
@@ -314,8 +347,8 @@ class InstagramScraper:
 
 def main():
     scraper = InstagramScraper()
-    
-    usernames = ['sanimax.nl'] 
+    usernames = pd.read_csv('usernames.txt',names=['n'])['n'].to_list()
+    # usernames = ['sanimax.nl'] 
     
     scraper.logger.info("Starting Instagram scraping session")
     results = scraper.scrape_multiple_users(usernames)

@@ -2,3 +2,4 @@ scrapy
 curl_cffi
 pandas
 python-dotenv
+boto3
