@@ -1,0 +1,1 @@
+2025-07-05 16:37:55,549 - instagram_scraper - ERROR - scrape_user_posts:346 - Unexpected error scraping user sanimax.nl: expected string or bytes-like object, got 'NoneType'

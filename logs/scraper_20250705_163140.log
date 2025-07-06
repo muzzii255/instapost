@@ -1,0 +1,89 @@
+2025-07-05 16:31:40,510 - instagram_scraper - INFO - main:373 - Instagram scraper initialized successfully
+2025-07-05 16:31:40,510 - instagram_scraper - INFO - main:374 - Using proxy endpoint: nl.smartproxy.com:10000
+2025-07-05 16:31:40,512 - instagram_scraper - INFO - main:378 - Starting Instagram scraping session
+2025-07-05 16:31:40,512 - instagram_scraper - INFO - scrape_multiple_users:353 - Starting scrape for user: sanimax.nl
+2025-07-05 16:31:40,512 - instagram_scraper - INFO - scrape_user_posts:250 - Starting to scrape user: sanimax.nl
+2025-07-05 16:31:40,512 - instagram_scraper - DEBUG - send_request:106 - Sending request to: https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl
+2025-07-05 16:31:42,576 - instagram_scraper - DEBUG - send_request:127 - Response: 200 for https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl
+2025-07-05 16:31:42,576 - instagram_scraper - INFO - send_request:130 - Successfully fetched: https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl
+2025-07-05 16:31:42,578 - instagram_scraper - INFO - scrape_user_posts:262 - Successfully fetched profile for sanimax.nl
+2025-07-05 16:31:42,578 - instagram_scraper - INFO - scrape_user_posts:263 - User has 12 posts
+2025-07-05 16:31:42,579 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 1/12 for user sanimax.nl
+2025-07-05 16:31:42,579 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3669325142174377619.mp4
+2025-07-05 16:31:42,579 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3669325142174377619.mp4: name 'headers' is not defined
+2025-07-05 16:31:42,579 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3669325142174377619.jpg
+2025-07-05 16:31:42,579 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3669325142174377619.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,581 - instagram_scraper - INFO - export_data:224 - Created new CSV file: data/instadata.csv
+2025-07-05 16:31:42,581 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3669325142174377619
+2025-07-05 16:31:42,581 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 2/12 for user sanimax.nl
+2025-07-05 16:31:42,581 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3667875304576313027.jpg
+2025-07-05 16:31:42,581 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3667875304576313027.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,582 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,582 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3667875304576313027
+2025-07-05 16:31:42,582 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 3/12 for user sanimax.nl
+2025-07-05 16:31:42,582 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3666426138268322710.mp4
+2025-07-05 16:31:42,582 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3666426138268322710.mp4: name 'headers' is not defined
+2025-07-05 16:31:42,582 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3666426138268322710.jpg
+2025-07-05 16:31:42,582 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3666426138268322710.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,583 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,584 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3666426138268322710
+2025-07-05 16:31:42,584 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 4/12 for user sanimax.nl
+2025-07-05 16:31:42,584 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3664976583927591751.mp4
+2025-07-05 16:31:42,584 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3664976583927591751.mp4: name 'headers' is not defined
+2025-07-05 16:31:42,584 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3664976583927591751.jpg
+2025-07-05 16:31:42,584 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3664976583927591751.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,585 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,585 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3664976583927591751
+2025-07-05 16:31:42,585 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 5/12 for user sanimax.nl
+2025-07-05 16:31:42,585 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3663526659710177425.jpg
+2025-07-05 16:31:42,585 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3663526659710177425.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,586 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,586 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3663526659710177425
+2025-07-05 16:31:42,586 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 6/12 for user sanimax.nl
+2025-07-05 16:31:42,586 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3662122283510923677.mp4
+2025-07-05 16:31:42,586 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3662122283510923677.mp4: name 'headers' is not defined
+2025-07-05 16:31:42,586 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3662122283510923677.jpg
+2025-07-05 16:31:42,586 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3662122283510923677.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,587 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,587 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3662122283510923677
+2025-07-05 16:31:42,587 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 7/12 for user sanimax.nl
+2025-07-05 16:31:42,587 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3656309462089511378.mp4
+2025-07-05 16:31:42,587 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3656309462089511378.mp4: name 'headers' is not defined
+2025-07-05 16:31:42,587 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3656309462089511378.jpg
+2025-07-05 16:31:42,587 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3656309462089511378.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,588 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,589 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3656309462089511378
+2025-07-05 16:31:42,589 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 8/12 for user sanimax.nl
+2025-07-05 16:31:42,589 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3654844269736555729.jpg
+2025-07-05 16:31:42,589 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3654844269736555729.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,590 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,590 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3654844269736555729
+2025-07-05 16:31:42,590 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 9/12 for user sanimax.nl
+2025-07-05 16:31:42,590 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3653437937996511144.mp4
+2025-07-05 16:31:42,590 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3653437937996511144.mp4: name 'headers' is not defined
+2025-07-05 16:31:42,590 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3653437937996511144.jpg
+2025-07-05 16:31:42,590 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3653437937996511144.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,591 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,591 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3653437937996511144
+2025-07-05 16:31:42,591 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 10/12 for user sanimax.nl
+2025-07-05 16:31:42,591 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3651961149160568403.mp4
+2025-07-05 16:31:42,591 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3651961149160568403.mp4: name 'headers' is not defined
+2025-07-05 16:31:42,591 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3651961149160568403.jpg
+2025-07-05 16:31:42,591 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3651961149160568403.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,592 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,592 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3651961149160568403
+2025-07-05 16:31:42,592 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 11/12 for user sanimax.nl
+2025-07-05 16:31:42,593 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3650486919282445666.jpg
+2025-07-05 16:31:42,593 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3650486919282445666.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,594 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,594 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3650486919282445666
+2025-07-05 16:31:42,594 - instagram_scraper - INFO - scrape_user_posts:274 - Processing post 12/12 for user sanimax.nl
+2025-07-05 16:31:42,594 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3648357068575237935.mp4
+2025-07-05 16:31:42,594 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3648357068575237935.mp4: name 'headers' is not defined
+2025-07-05 16:31:42,594 - instagram_scraper - INFO - download_media:154 - Downloading media: media/9198584778_3648357068575237935.jpg
+2025-07-05 16:31:42,594 - instagram_scraper - ERROR - download_media:198 - Error downloading media/9198584778_3648357068575237935.jpg: name 'headers' is not defined
+2025-07-05 16:31:42,595 - instagram_scraper - DEBUG - export_data:227 - Appended data to: data/instadata.csv
+2025-07-05 16:31:42,595 - instagram_scraper - INFO - scrape_user_posts:332 - Successfully processed post 3648357068575237935
+2025-07-05 16:31:42,595 - instagram_scraper - INFO - scrape_user_posts:340 - Completed scraping user sanimax.nl: 12/12 posts processed successfully
+2025-07-05 16:31:42,595 - instagram_scraper - INFO - main:384 - Scraping session completed: 1/1 users processed successfully
+2025-07-05 16:31:42,595 - instagram_scraper - INFO - main:388 - User sanimax.nl: SUCCESS
