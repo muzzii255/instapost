@@ -1,2 +1,0 @@
-2025-07-05 16:37:42,965 - instagram_scraper - ERROR - send_request:148 - Failed to fetch https://www.instagram.com/api/v1/users/web_profile_info/?username=sanimax.nl after 10 attempts
-2025-07-05 16:37:42,965 - instagram_scraper - ERROR - scrape_user_posts:259 - Failed to fetch profile for user: sanimax.nl

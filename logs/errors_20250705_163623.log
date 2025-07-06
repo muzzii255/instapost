@@ -1,3 +1,0 @@
-2025-07-05 16:36:29,173 - instagram_scraper - ERROR - scrape_user_posts:342 - Error processing post 1 for user sanimax.nl: expected string or bytes-like object, got 'NoneType'
-2025-07-05 16:36:31,227 - instagram_scraper - ERROR - scrape_user_posts:342 - Error processing post 2 for user sanimax.nl: expected string or bytes-like object, got 'NoneType'
-2025-07-05 16:36:33,722 - instagram_scraper - ERROR - scrape_user_posts:342 - Error processing post 3 for user sanimax.nl: expected string or bytes-like object, got 'NoneType'

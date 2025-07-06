@@ -1,4 +1,0 @@
-2025-07-05 16:30:59,399 - instagram_scraper - ERROR - download_media:196 - Error downloading media/9198584778_3669325142174377619.mp4: expected string or bytes-like object, got 'NoneType'
-2025-07-05 16:31:00,134 - instagram_scraper - ERROR - download_media:196 - Error downloading media/9198584778_3669325142174377619.jpg: expected string or bytes-like object, got 'NoneType'
-2025-07-05 16:31:00,781 - instagram_scraper - ERROR - download_media:196 - Error downloading media/9198584778_3667875304576313027.jpg: expected string or bytes-like object, got 'NoneType'
-2025-07-05 16:31:01,444 - instagram_scraper - ERROR - download_media:196 - Error downloading media/9198584778_3666426138268322710.mp4: expected string or bytes-like object, got 'NoneType'
