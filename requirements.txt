@@ -1,5 +1,10 @@
-scrapy
-curl_cffi
-pandas
-python-dotenv
-boto3
+boto3==1.39.3
+celery==5.5.3
+curl_cffi==0.11.4
+redis
+fastapi==0.115.14
+pandas==2.3.0
+pydantic==2.11.7
+python-dotenv==1.1.1
+Requests==2.32.4
+gunicorn

@@ -93,7 +93,6 @@ async def scrape_tariff(request: UserRequest):
 async def get_user(request:UserRequest):
     try:
         data = get_user_with_posts(request.username)
-        
         return data
     except Exception as e:
         print(e)
