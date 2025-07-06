@@ -2,3 +2,7 @@ test*/*
 media
 .env
 inst
+__*
+venv
+logs
+data
