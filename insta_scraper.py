@@ -150,6 +150,7 @@ def ScrapeUser(username):
             caption += edge.get('node', {}).get('text', '')
         
         post_data = {
+            'username': username,
             'post_id': post_id,
             'video_view_count': post_node.get('video_view_count', 0),
             'taken_at_timestamp': post_node.get('taken_at_timestamp', 0),

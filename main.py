@@ -39,22 +39,6 @@ class UserRequest(BaseModel):
 
 API_KEY =  os.getenv("APIKEY")
 
-def verify_api_key(request: Request):
-    auth_header = request.headers.get("authorization")
-    
-    if not auth_header:
-        raise HTTPException(status_code=401, detail="API key required")
-    
-    if auth_header.startswith("Bearer "):
-        api_key = auth_header[7:]
-    else:
-        api_key = auth_header
-    
-    if api_key != API_KEY:
-        raise HTTPException(status_code=401, detail="Invalid API key")
-    
-    return True
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -83,7 +67,7 @@ def get_task_info(task_id: str) -> Dict[str, Any]:
 
 
 @app.get("/api/v1/task/{task_id}", response_model=TaskStatusResponse)
-async def get_task_status(task_id: str, api_key_valid: bool = Depends(verify_api_key)):
+async def get_task_status(task_id: str):
     try:
         task_info = get_task_info(task_id)
         return TaskStatusResponse(**task_info)
@@ -93,8 +77,21 @@ async def get_task_status(task_id: str, api_key_valid: bool = Depends(verify_api
 
 
 @app.post("/api/v1/scrape/username", response_model=TaskResponse)
-async def scrape_tariff(request: UserRequest, api_key_valid: bool = Depends(verify_api_key)):
+async def scrape_tariff(request: UserRequest):
     try:
+        auth_header = request.headers.get("authorization")
+        
+        if not auth_header:
+            raise HTTPException(status_code=401, detail="API key required")
+        
+        if auth_header.startswith("Bearer "):
+            api_key = auth_header[7:]
+        else:
+            api_key = auth_header
+        
+        if api_key != API_KEY:
+            raise HTTPException(status_code=401, detail="Invalid API key")
+        
         task = scrape_insta.delay(
             request.username
         )
@@ -110,7 +107,7 @@ async def scrape_tariff(request: UserRequest, api_key_valid: bool = Depends(veri
 
 
 @app.post("/api/v1/get-user")
-async def get_user(request:UserRequest, api_key_valid: bool = Depends(verify_api_key)):
+async def get_user(request:UserRequest):
     try:
         data = get_user_with_posts(request.username)
         return data
