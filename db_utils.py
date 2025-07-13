@@ -145,7 +145,7 @@ def get_user_stats(self):
         'total_posts': posts_count,
         'completed_users': completed_count
     }
-    
+
 
 def export_to_csv(table_name, output_file=None):
     if not output_file:
@@ -157,17 +157,17 @@ def export_to_csv(table_name, output_file=None):
     conn.close()
 
     return output_file
-    
-    
+
+
 def get_user_by_username(username):
         conn = sqlite3.connect(db_path)
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
-        
+
         cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
         row = cursor.fetchone()
         conn.close()
-        
+
         return dict(row) if row else None
 
 def get_all_posts(username):
@@ -185,21 +185,21 @@ def get_user_with_posts(username):
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
-    
+
     cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
     user_row = cursor.fetchone()
-    
+
     if not user_row:
         conn.close()
         return None
-    
+
     user = dict(user_row)
-    
+
     cursor.execute("""SELECT * FROM posts WHERE username = ?
-        ORDER BY created_at DESC 
+        ORDER BY scraped_at DESC
         LIMIT 20""", (username,))
     post_rows = cursor.fetchall()
     user['posts'] = [dict(row) for row in post_rows]
-    
+
     conn.close()
     return user
