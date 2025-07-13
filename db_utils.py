@@ -98,7 +98,7 @@ def insert_post(post_data):
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (
         post_data.get('post_id'),
-        post_data.get('user_id'),
+        post_data.get('id'),
         post_data.get('username'),
         post_data.get('taken_at_timestamp'),
         post_data.get('is_video', False),
@@ -170,13 +170,22 @@ def get_user_by_username(username):
         
         return dict(row) if row else None
 
+def get_all_posts(username):
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute("SELECT post_id FROM posts WHERE username = ?", (username,))
+    post_rows = cursor.fetchall()
+    data = [dict(x)['post_id'] for x  in post_rows]
+    conn.close()
+    return data
+
 
 def get_user_with_posts(username):
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
     
-    # Get user info
     cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
     user_row = cursor.fetchone()
     
@@ -186,7 +195,9 @@ def get_user_with_posts(username):
     
     user = dict(user_row)
     
-    cursor.execute("SELECT * FROM posts WHERE username = ?", (username,))
+    cursor.execute("""SELECT * FROM posts WHERE username = ?
+        ORDER BY created_at DESC 
+        LIMIT 20""", (username,))
     post_rows = cursor.fetchall()
     user['posts'] = [dict(row) for row in post_rows]
     

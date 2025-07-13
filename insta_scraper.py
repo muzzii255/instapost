@@ -126,11 +126,15 @@ def ScrapeUser(username):
     }
     
     insert_user(user_data)
-    
+    all_posts = get_all_posts(user_data['username'])
+    print(all_posts)
     for i, post in enumerate(posts):
         post_node = post.get('node', {})
         post_id = post_node.get('id', '')
-        
+        if post_id in all_posts:
+            logger.info(f"post already downloaded {post_id}")
+            continue
+            
         video_filename = None
         image_filename = None
         
@@ -151,6 +155,7 @@ def ScrapeUser(username):
         
         post_data = {
             'username': username,
+            'id': user_data.get('id', ''),
             'post_id': post_id,
             'video_view_count': post_node.get('video_view_count', 0),
             'taken_at_timestamp': post_node.get('taken_at_timestamp', 0),
