@@ -58,8 +58,12 @@ def SendRequests(url):
     retry = 0
     while retry < 20:
         try:
-            response = requests.get(url, headers=headers, proxies=proxy, timeout=30, impersonate="chrome131")
+            response = requests.get(url, headers=headers, timeout=30, impersonate="chrome131")
             if response.status_code == 200:
+                print(response.text)
+                # with open('test.json','w',encoding='utf-8') as f:
+                #     json.dump(response.json(),f)
+                # f.close()
                 return response
         except Exception as e:
             print(e)
