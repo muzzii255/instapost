@@ -13,9 +13,13 @@ from typing import List, Optional, Dict, Any
 from datetime import datetime
 from db_utils import get_user_with_posts
 from dotenv import load_dotenv
+import logging
+
 load_dotenv()
 
-
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="Insta API",
@@ -47,8 +51,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-
 def verify_api_key(request: Request):
     auth_header = request.headers.get("authorization")
 
@@ -65,57 +67,98 @@ def verify_api_key(request: Request):
 
     return True
 
-
 def get_task_info(task_id: str) -> Dict[str, Any]:
     try:
+        logger.info(f"Checking task status for: {task_id}")
         result = AsyncResult(task_id, app=celery_app)
-        return {
+        
+        logger.info(f"Task {task_id} status: {result.status}")
+        
+        task_info = {
             "task_id": task_id,
             "status": result.status,
             "result": result.result,
             "traceback": result.traceback,
             "date_done": result.date_done
         }
-        if result.status in ['SUCCESS', 'FAILURE', 'REVOKED']:
-            result.forget()
+        
+        return task_info
+        
     except Exception as e:
+        logger.error(f"Error retrieving task info for {task_id}: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error retrieving task info: {str(e)}")
-
-
-
 
 @app.get("/api/v1/task/{task_id}", response_model=TaskStatusResponse)
 async def get_task_status(task_id: str, _: bool = Depends(verify_api_key)):
     try:
-        task_info = get_task_info(task_id)
+        result = AsyncResult(task_id, app=celery_app)
+        
+        logger.info(f"Task {task_id} exists: {result.id is not None}")
+        logger.info(f"Task {task_id} status: {result.status}")
+        
+        if result.status == 'PENDING' and result.result is None:
+            logger.warning(f"Task {task_id} appears to not exist or has been cleaned up")
+            raise HTTPException(
+                status_code=404, 
+                detail=f"Task not found or has been cleaned up: {task_id}"
+            )
+        
+        task_info = {
+            "task_id": task_id,
+            "status": result.status,
+            "result": result.result,
+            "traceback": result.traceback,
+            "date_done": result.date_done
+        }
+        
         return TaskStatusResponse(**task_info)
+        
+    except HTTPException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=404, detail=f"Task not found: {task_id}")
-
-
+        logger.error(f"Unexpected error checking task {task_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error checking task status: {str(e)}")
 
 @app.post("/api/v1/scrape/username", response_model=TaskResponse)
 async def scrape_username(request: UserRequest, _: bool = Depends(verify_api_key)):
     try:
-        task = scrape_insta.delay(
-            request.username
-        )
+        logger.info(f"Starting scrape task for username: {request.username}")
+        
+        task = scrape_insta.delay(request.username)
+        
+        logger.info(f"Task created with ID: {task.id} for username: {request.username}")
+        
         return TaskResponse(
             task_id=task.id,
             status="queued",
-            message=f"Userscraping task queued for {request.username}"
+            message=f"User scraping task queued for {request.username}"
         )
     except Exception as e:
+        logger.error(f"Error creating scrape task for {request.username}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
-
-
-
 @app.post("/api/v1/get-user")
-async def get_user(request:UserRequest, _: bool = Depends(verify_api_key) ):
+async def get_user(request: UserRequest, _: bool = Depends(verify_api_key)):
     try:
+        logger.info(f"Getting user data for: {request.username}")
         data = get_user_with_posts(request.username)
         return data
     except Exception as e:
-        print(e)
+        logger.error(f"Error getting user data for {request.username}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/v1/debug/celery-status")
+async def celery_status(_: bool = Depends(verify_api_key)):
+    try:
+        inspect = celery_app.control.inspect()
+        active_tasks = inspect.active()
+        
+        return {
+            "celery_broker": celery_app.conf.broker_url,
+            "celery_backend": celery_app.conf.result_backend,
+            "active_tasks": active_tasks,
+            "registered_tasks": list(celery_app.tasks.keys())
+        }
+    except Exception as e:
+        logger.error(f"Error checking Celery status: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Celery connection error: {str(e)}")
