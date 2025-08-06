@@ -58,7 +58,7 @@ def SendRequests(url):
     retry = 0
     while retry < 20:
         try:
-            response = requests.get(url, headers=headers, timeout=30, impersonate="chrome131")
+            response = requests.get(url, headers=headers, timeout=30, impersonate="chrome131",proxies=proxy)
             if response.status_code == 200:
                 print(response.text)
                 # with open('test.json','w',encoding='utf-8') as f:
@@ -97,7 +97,7 @@ def ScrapeUser(username):
     if response == None:
         logger.error(f"Failed to fetch profile for {username}")
         return False
-        
+    print(response.text)
     user_data = response.json()['data']['user']
     posts = user_data.get('edge_owner_to_timeline_media', {}).get('edges', [])
     logger.info(f"Found {len(posts)} posts for {username}")
@@ -175,7 +175,6 @@ def ScrapeUser(username):
         
     logger.info(f"Completed {username}: {len(posts)} posts processed")
     return True
-
 
 
 
